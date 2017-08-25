@@ -14,6 +14,14 @@ formData.save = function () {
 };
 
 function createPDF(formData) {
+  var fs = require('fs');
+  fs.writeFile("./dotgrid.tex", "\\documentclass{article}\n\\pagenumbering{gobble}\n\\usepackage[portrait, margin=0.0in]{geometry}\n\\usepackage{tikz}\n\\begin{document}\n    \\begin{tikzpicture}[scale=.5]\n        \\foreach \\x in {0,...,46}\n        \\foreach \\y in {0,...,55}\n    {\n     \\fill (\\x,\\y) circle (0.03cm);\n   }\n   \\end{tikzpicture}\n\\end{document}", function(err) {
+    if(err) {
+      return console.log(err);
+    }
+
+    console.log("The file was saved!");
+  });
   runChild.spawn('sh', ['deploy.sh'], {stdio: 'inherit'});
   return "";
 }
@@ -32,8 +40,8 @@ var router = express.Router();
 app.use('/api', router);
 
 router.use(function(req, res, next) {
-    console.log('Something touched the API ! D:');
-    next(); // use next() to go to the next route without stopping here
+  console.log('Something touched the API ! D:');
+  next(); // use next() to go to the next route without stopping here
 });
 
 //Single route
@@ -41,21 +49,21 @@ router.route('/form')
 
 //Gets all data from form
 .post(function(req, res) {
-    formData.paper_size = req.body.paper_size;
-    formData.orientation = req.body.orientation;
-    formData.grid_style = req.body.grid_style;
-    formData.margin = req.body.margin;
+  formData.paper_size = req.body.paper_size;
+  formData.orientation = req.body.orientation;
+  formData.grid_style = req.body.grid_style;
+  formData.margin = req.body.margin;
 
-    console.log(formData.paper_size + ', ' + formData.orientation + ', ' + formData.grid_style + ', ' + formData.margin);
-
-    //this function is broken
-    formData.save(function(err) {
-        if (err){
-            res.send(err);
-        }
-        res.json({message: 'Data received ' });
-    });
-    res.json({message: "Saul Goodman ;)"});
+  console.log(formData.paper_size + ', ' + formData.orientation + ', ' + formData.grid_style + ', ' + formData.margin);
+  createPDF();
+  //this function is broken
+  formData.save(function(err) {
+    if (err){
+      res.send(err);
+    }
+    res.json({message: 'Data received ' });
+  });
+  res.json({message: "Saul Goodman ;)"});
 })
 
 //Server is started here
