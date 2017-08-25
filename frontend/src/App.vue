@@ -14,37 +14,37 @@
           <div class="form-group">
             <label for="exampleSelect1">Paper Size</label>
             <select class="form-control" id="exampleSelect1" input type="text" name="field1" v-model="form.paper_size">
-              <option>Letter</option>
-              <option>Legal</option>
-              <option>A4</option>
-              <option>A6</option>
-              <option>A5</option>
+              <option value="letter">Letter</option>
+              <option value="legal">Legal</option>
+              <option value="a4">A4</option>
+              <option value="a5">A5</option>
+              <option value="a6">A6</option>
             </select>
           </div>
           <div class="form-group">
             <label for="exampleSelect1">Orientation</label>
-            <select class="form-control" id="exampleSelect1" input type="text" name="field2" v-model="form.orientation">
-              <option>Portrait</option>
-              <option>Landscape</option>
+            <select class="form-control" id="exampleSelect2" input type="text" name="field2" v-model="form.orientation">
+              <option value="portrait">Portrait</option>
+              <option value="landscape">Landscape</option>
             </select>
           </div>
           <div class="form-group">
             <label for="exampleSelect1">Grid/Line Style</label>
-            <select class="form-control" id="exampleSelect1" input type="text" name="field3" v-model="form.grid_style">
-              <option>Lined </option>
-              <option>Dot Grid</option>
-              <option>Graph</option>
+            <select class="form-control" id="exampleSelect3" input type="text" name="field3" v-model="form.grid_style">
+              <option value="lined">Lined </option>
+              <option value="dot grid">Dot Grid</option>
+              <option value="graph">Graph</option>
             </select>
           </div>
           <div class="form-group">
             <label for="exampleSelect1">Margin Size</label>
-            <select class="form-control" id="exampleSelect1" input type="text" name="field4" v-model="form.margin">
-              <option>No Margin!</option>
-              <option>.25in</option>
-              <option>.5in</option>
-              <option>.75in</option>
-              <option>1in</option>
-              <option>2in</option>
+            <select class="form-control" id="exampleSelect4" input type="text" name="field4" v-model="form.margin">
+              <option value="none">No Margin!</option>
+              <option value=".25">.25in</option>
+              <option value=".5">.5in</option>
+              <option value=".75">.75in</option>
+              <option value="1">1in</option>
+              <option value="2">2in</option>
             </select>
           </div>
           <button type="submit" class="btn btn-primary" id="create-button">Click to Generate PDF :)</button>
