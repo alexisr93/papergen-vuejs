@@ -13,18 +13,24 @@ formData.save = function () {
   return
 };
 
-function createPDF(formData) {
+
+function createTexInputFile(){
   var fs = require('fs');
   fs.writeFile("./dotgrid.tex", "\\documentclass{article}\n\\pagenumbering{gobble}\n\\usepackage[portrait, margin=0.0in]{geometry}\n\\usepackage{tikz}\n\\begin{document}\n    \\begin{tikzpicture}[scale=.5]\n        \\foreach \\x in {0,...,46}\n        \\foreach \\y in {0,...,55}\n    {\n     \\fill (\\x,\\y) circle (0.03cm);\n   }\n   \\end{tikzpicture}\n\\end{document}", function(err) {
     if(err) {
       return console.log(err);
     }
-
     console.log("The file was saved!");
   });
+}
+
+
+function createPDF(formData) {
+
   runChild.spawn('sh', ['deploy.sh'], {stdio: 'inherit'});
   return "";
 }
+
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -32,20 +38,26 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
 var port = process.env.PORT || 8010;
+
 
 var router = express.Router();
 
+
 //API prefix
 app.use('/api', router);
+
 
 router.use(function(req, res, next) {
   console.log('Something touched the API ! D:');
   next(); // use next() to go to the next route without stopping here
 });
 
+
 //Single route
 router.route('/form')
+
 
 //Gets all data from form
 .post(function(req, res) {
@@ -65,6 +77,8 @@ router.route('/form')
   });
   res.json({message: "Saul Goodman ;)"});
 })
+
+
 
 //Server is started here
 app.listen(port);
