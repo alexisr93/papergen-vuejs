@@ -14,11 +14,13 @@
           <div class="form-group">
             <label for="exampleSelect1">Paper Size</label>
             <select class="form-control" id="exampleSelect1" input type="text" name="field1" v-model="form.paper_size">
-              <option value="letter">Letter</option>
-              <option value="legal">Legal</option>
-              <option value="a4">A4</option>
+              <option value="letterpaper">Letter</option>
+              <option value="legalpaper">Legal</option>
+              <option value="a4paper">A4</option>
+              <!--
               <option value="a5">A5</option>
               <option value="a6">A6</option>
+              -->
             </select>
           </div>
           <div class="form-group">
@@ -39,12 +41,12 @@
           <div class="form-group">
             <label for="exampleSelect1">Margin Size</label>
             <select class="form-control" id="exampleSelect4" input type="text" name="field4" v-model="form.margin">
-              <option value="none">No Margin!</option>
-              <option value=".25">.25in</option>
-              <option value=".5">.5in</option>
-              <option value=".75">.75in</option>
-              <option value="1">1in</option>
-              <option value="2">2in</option>
+              <option value="0.0">No Margin!</option>
+              <option value="0.25">.25in</option>
+              <option value="0.5">.5in</option>
+              <option value="0.75">.75in</option>
+              <option value="1.0">1in</option>
+              <option value="2.0">2in</option>
             </select>
           </div>
           <button type="submit" class="btn btn-primary" id="create-button">Click to Generate PDF :)</button>
@@ -53,7 +55,7 @@
     </div>
     <div id="copyright">
       <p>
-        Copyright © 2017 Alexis R. All rights reserved.
+        Copyright © 2017 Alexis Ramirez. All rights reserved.
       </p>
     </div>
   </div>
