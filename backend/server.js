@@ -16,17 +16,17 @@ formData.save = function () {
 
 function createTexInputFile(){
   var fs = require('fs');
-  fs.writeFile("./dotgrid.tex", "\\documentclass{article}\n\\pagenumbering{gobble}\n\\usepackage[portrait, margin=0.0in]{geometry}\n\\usepackage{tikz}\n\\begin{document}\n    \\begin{tikzpicture}[scale=.5]\n        \\foreach \\x in {0,...,46}\n        \\foreach \\y in {0,...,55}\n    {\n     \\fill (\\x,\\y) circle (0.03cm);\n   }\n   \\end{tikzpicture}\n\\end{document}", function(err) {
+  fs.writeFile("./dotgrid.tex", "\\documentclass[" + formData.paper_size + "]{article}\n\\pagenumbering{gobble}\n\\usepackage[" + formData.orientation + ", margin=" + formData.margin + "in]{geometry}\n\\usepackage{tikz}\n\\begin{document}\n    \\begin{tikzpicture}[scale=.5]\n        \\foreach \\x in {0,...,46}\n        \\foreach \\y in {0,...,55}\n    {\n     \\fill (\\x,\\y) circle (0.03cm);\n   }\n   \\end{tikzpicture}\n\\end{document}", function(err) {
     if(err) {
       return console.log(err);
     }
-    console.log("The file was saved!");
+    console.log("Tex file was saved");
   });
 }
 
 
 function createPDF(formData) {
-
+  createTexInputFile();
   runChild.spawn('sh', ['deploy.sh'], {stdio: 'inherit'});
   return "";
 }
